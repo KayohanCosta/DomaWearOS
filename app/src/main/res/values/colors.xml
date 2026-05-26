@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="doma_red">#E94560</color>
+    <color name="doma_dark">#1A1A2E</color>
+    <color name="doma_card">#16213E</color>
+    <color name="doma_accent">#0F3460</color>
+    <color name="doma_alert">#FF6B35</color>
+    <color name="white">#FFFFFF</color>
+</resources>

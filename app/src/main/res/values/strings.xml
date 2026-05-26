@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Doma Wear OS</string>
+    <string name="title_audio_assist">Áudio Assistivo</string>
+    <string name="title_alerts">Alertas de Segurança</string>
+</resources>

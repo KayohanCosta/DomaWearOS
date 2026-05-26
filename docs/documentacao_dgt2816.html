@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentação — DomaWearOS | DGT2816</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fa;
+    color: #1a1a2e;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 60px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+  }
+
+  /* CAPA */
+  .cover {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 40px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(233,69,96,0.15) 0%, transparent 70%);
+  }
+  .cover-logo {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #e94560;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .cover h2 {
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .cover-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .cover-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 12px 20px;
+    backdrop-filter: blur(10px);
+  }
+  .cover-badge .label { font-size: 10px; text-transform: uppercase; opacity: 0.6; letter-spacing: 1px; }
+  .cover-badge .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
+
+  /* SEÇÕES */
+  h2.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e94560;
+    border-bottom: 3px solid #e94560;
+    padding-bottom: 8px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f3460;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #16213e;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 12px; color: #333; }
+
+  /* CARDS */
+  .card {
+    background: #f0f4ff;
+    border-left: 4px solid #e94560;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .card.blue { border-left-color: #0f3460; background: #f0f4ff; }
+  .card.orange { border-left-color: #ff6b35; background: #fff5f0; }
+  .card.green { border-left-color: #28a745; background: #f0fff4; }
+
+  /* TABELAS */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  th {
+    background: #1a1a2e;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  tr:nth-child(even) td { background: #f8f9fa; }
+
+  /* CÓDIGO */
+  pre {
+    background: #1a1a2e;
+    color: #e6e6e6;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin: 16px 0;
+    border-left: 4px solid #e94560;
+  }
+  code {
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: #e94560;
+  }
+
+  /* LISTA */
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; color: #444; }
+
+  /* ESTRUTURA DE ARQUIVOS */
+  .file-tree {
+    background: #1a1a2e;
+    color: #7fff7f;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.8;
+    margin: 16px 0;
+  }
+  .file-tree .folder { color: #87cefa; }
+  .file-tree .file   { color: #7fff7f; }
+  .file-tree .comment { color: #888; }
+
+  /* PERMISSÕES TAG */
+  .perm-tag {
+    display: inline-block;
+    background: #e94560;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 3px;
+    font-family: 'Fira Code', monospace;
+  }
+
+  /* RODAPÉ */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+    color: #888;
+    font-size: 12px;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; padding: 40px; }
+    pre { page-break-inside: avoid; }
+    h2.section-title { page-break-before: always; }
+    .cover { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-logo">⌚</div>
+    <h1>DomaWearOS</h1>
+    <h2>Documentação do Trabalho Prático — DGT2816<br>
+    Interação com sensores de smartphones e wearables</h2>
+    <div class="cover-info">
+      <div class="cover-badge">
+        <div class="label">Disciplina</div>
+        <div class="value">DGT2816</div>
+      </div>
+      <div class="cover-badge">
+        <div class="label">Plataforma</div>
+        <div class="value">Wear OS</div>
+      </div>
+      <div class="cover-badge">
+        <div class="label">Linguagem</div>
+        <div class="value">Kotlin</div>
+      </div>
+      <div class="cover-badge">
+        <div class="label">Instituição</div>
+        <div class="value">Estácio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. CONTEXTO -->
+  <h2 class="section-title">1. Contexto e Objetivo</h2>
+  <p>
+    A empresa fictícia <strong>Doma</strong> identificou a necessidade de fornecer assistência
+    sonora a funcionários com deficiência auditiva ou visual no ambiente corporativo. O objetivo
+    é desenvolver um aplicativo <strong>Wear OS</strong> (smartwatch) capaz de usar o áudio como
+    canal principal de comunicação, entregando informações, alertas e feedbacks via fala sintetizada.
+  </p>
+
+  <div class="card">
+    <strong>Funcionalidades entregues pelo app:</strong>
+    <ul style="margin-top:8px">
+      <li>🔊 Leitura de mensagens de texto em voz alta (TTS)</li>
+      <li>🔔 Reprodução de notificações em áudio</li>
+      <li>⏰ Lembretes por voz em Português Brasileiro</li>
+      <li>📡 Detecção automática de saídas de áudio disponíveis</li>
+      <li>🎧 Suporte a fones Bluetooth A2DP e com fio</li>
+      <li>🚨 Alertas críticos de segurança (evacuação, incêndio, emergência médica)</li>
+    </ul>
+  </div>
+
+  <!-- 2. MICROATIVIDADE 1 -->
+  <h2 class="section-title">2. Microatividade 1 — Configuração do Ambiente</h2>
+
+  <h3>2.1 Ferramentas Instaladas</h3>
+  <table>
+    <tr><th>Ferramenta</th><th>Versão</th><th>Finalidade</th></tr>
+    <tr><td>Android Studio</td><td>Hedgehog+</td><td>IDE principal de desenvolvimento</td></tr>
+    <tr><td>Kotlin</td><td>1.9.22</td><td>Linguagem de programação</td></tr>
+    <tr><td>Android SDK</td><td>API 34</td><td>Compilação e target</td></tr>
+    <tr><td>Wear OS SDK</td><td>API 30 (minSdk)</td><td>Plataforma wearable</td></tr>
+    <tr><td>Gradle</td><td>8.2</td><td>Build system</td></tr>
+  </table>
+
+  <h3>2.2 Emulador Wear OS</h3>
+  <p>Configuração do emulador no Android Studio:</p>
+  <div class="card blue">
+    <code>Tools → Device Manager → Create Device → Wear OS → Wear OS Small Round → API 30</code>
+  </div>
+
+  <h3>2.3 Permissões — AndroidManifest.xml</h3>
+  <p>Permissões declaradas no manifesto do aplicativo:</p>
+  <div>
+    <span class="perm-tag">BODY_SENSORS</span>
+    <span class="perm-tag">WAKE_LOCK</span>
+    <span class="perm-tag">BLUETOOTH</span>
+    <span class="perm-tag">BLUETOOTH_CONNECT</span>
+    <span class="perm-tag">VIBRATE</span>
+  </div>
+<pre>&lt;uses-permission android:name="android.permission.BODY_SENSORS" /&gt;
+&lt;uses-permission android:name="android.permission.WAKE_LOCK" /&gt;
+&lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;
+&lt;uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /&gt;
+&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;
+&lt;uses-feature android:name="android.hardware.type.watch" /&gt;</pre>
+
+  <!-- 3. MICROATIVIDADE 2 -->
+  <h2 class="section-title">3. Microatividade 2 — Implementação</h2>
+
+  <h3>3.1 AudioHelper.kt — Detecção de Saídas de Áudio</h3>
+  <p>
+    Classe utilitária que encapsula toda a lógica de detecção de dispositivos de saída de áudio.
+    O método principal <code>audioOutputAvailable(type)</code> implementa o padrão exigido pela especificação:
+  </p>
+
+<pre>fun audioOutputAvailable(type: Int): Boolean {
+    // 1. Verifica se o dispositivo possui saída de áudio
+    if (!context.packageManager
+            .hasSystemFeature(PackageManager.FEATURE_AUDIO_OUTPUT)) {
+        return false
+    }
+    // 2. Enumera saídas e verifica se o tipo solicitado existe
+    return audioManager
+        .getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        .any { it.type == type }
+}</pre>
+
+  <table>
+    <tr><th>Método</th><th>Tipo AudioDeviceInfo</th><th>Descrição</th></tr>
+    <tr><td><code>isSpeakerAvailable()</code></td><td>TYPE_BUILTIN_SPEAKER</td><td>Alto-falante integrado do relógio</td></tr>
+    <tr><td><code>isBluetoothHeadsetConnected()</code></td><td>TYPE_BLUETOOTH_A2DP</td><td>Fone de ouvido Bluetooth</td></tr>
+    <tr><td><code>isWiredHeadsetConnected()</code></td><td>TYPE_WIRED_HEADPHONES</td><td>Fone com fio</td></tr>
+  </table>
+
+  <h3>3.2 MainActivity.kt — Tela Principal</h3>
+  <p>Implementa a <code>ListView</code> com as 9 funcionalidades assistivas e os 3 botões de acesso rápido:</p>
+<pre>val funcionalidades = listOf(
+    "🔊 Leitura de mensagens de texto",
+    "🔔 Notificações em áudio",
+    "⏰ Lembretes por voz",
+    // ...
+)
+lvFuncionalidades.adapter = ArrayAdapter(
+    this, android.R.layout.simple_list_item_1, funcionalidades
+)</pre>
+
+  <h3>3.3 AudioDeviceCallback — Detecção Dinâmica em Tempo Real</h3>
+  <p>
+    Detecta conexão/desconexão de fones Bluetooth <strong>sem precisar reiniciar o app</strong>,
+    atualizando o status na tela automaticamente:
+  </p>
+<pre>private val audioDeviceCallback = object : AudioDeviceCallback() {
+    override fun onAudioDevicesAdded(
+        addedDevices: Array&lt;out AudioDeviceInfo&gt;?
+    ) {
+        if (audioHelper.isBluetoothHeadsetConnected())
+            updateAudioStatus("🎧 Fone Bluetooth conectado!")
+    }
+    override fun onAudioDevicesRemoved(
+        removedDevices: Array&lt;out AudioDeviceInfo&gt;?
+    ) {
+        if (!audioHelper.isBluetoothHeadsetConnected())
+            updateAudioStatus("📢 Bluetooth desconectado.")
+    }
+}
+// Registra no onCreate()
+audioManager.registerAudioDeviceCallback(audioDeviceCallback, null)
+// Remove no onDestroy() — evita memory leak
+audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)</pre>
+
+  <h3>3.4 Intent para Configurações Bluetooth</h3>
+  <p>Redireciona o usuário para parear fones de ouvido assistivos:</p>
+<pre>val intent = with(Intent(Settings.ACTION_BLUETOOTH_SETTINGS)) {
+    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+          or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+    putExtra("EXTRA_CONNECTION_ONLY", true)
+    putExtra("EXTRA_CLOSE_ON_CONNECT", true)
+    putExtra("android.bluetooth.devicepicker.extra.FILTER_TYPE", 1)
+    this
+}
+startActivity(intent)</pre>
+
+  <h3>3.5 AudioAssistActivity.kt — Text-to-Speech PT-BR</h3>
+  <p>Converte texto em fala em Português Brasileiro, verificando a saída disponível antes de reproduzir:</p>
+<pre>// Inicializa TTS com PT-BR
+tts = TextToSpeech(this, this)
+
+override fun onInit(status: Int) {
+    if (status == TextToSpeech.SUCCESS)
+        tts.setLanguage(Locale("pt", "BR"))
+}
+
+private fun reproduzirAudio(texto: String) {
+    when {
+        audioHelper.isBluetoothHeadsetConnected() ->
+            tvStatus.text = "🎧 Reproduzindo via Bluetooth..."
+        audioHelper.isSpeakerAvailable() ->
+            tvStatus.text = "📢 Reproduzindo via alto-falante..."
+        else -> { /* sem saída — exibe Toast */ return }
+    }
+    tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null, "doma_tts")
+}</pre>
+
+  <h3>3.6 AlertActivity.kt — Alertas com Vibração</h3>
+  <p>Emite 4 tipos de alerta crítico combinando TTS + padrão de vibração tátil:</p>
+  <table>
+    <tr><th>Alerta</th><th>Mensagem TTS</th><th>Padrão Vibração</th></tr>
+    <tr><td>🚪 Evacuação</td><td>Dirija-se à saída de emergência!</td><td>3x longo (500ms)</td></tr>
+    <tr><td>🔥 Incêndio</td><td>Saia do prédio imediatamente!</td><td>3x médio (300ms)</td></tr>
+    <tr><td>🏥 Médico</td><td>Atendimento médico urgente!</td><td>2x curto (200ms)</td></tr>
+    <tr><td>🛡️ Segurança</td><td>Aviso geral da Doma</td><td>1x (100ms)</td></tr>
+  </table>
+
+  <!-- 4. ESTRUTURA -->
+  <h2 class="section-title">4. Estrutura de Arquivos do Projeto</h2>
+  <div class="file-tree">
+<span class="folder">DomaWearOS/</span>
+├── <span class="file">.gitignore</span>
+├── <span class="file">README.md</span>
+├── <span class="file">build.gradle</span>              <span class="comment"># config raiz do projeto</span>
+├── <span class="file">settings.gradle</span>           <span class="comment"># inclui módulo :app</span>
+├── <span class="file">gradle.properties</span>         <span class="comment"># flags do Gradle</span>
+├── <span class="folder">gradle/wrapper/</span>
+│   └── <span class="file">gradle-wrapper.properties</span> <span class="comment"># versão do Gradle (8.2)</span>
+├── <span class="folder">docs/</span>
+│   └── <span class="file">documentacao_dgt2816.html</span> <span class="comment"># ← este documento</span>
+└── <span class="folder">app/</span>
+    ├── <span class="file">build.gradle</span>             <span class="comment"># deps Wear OS, Kotlin, TTS</span>
+    └── <span class="folder">src/main/</span>
+        ├── <span class="file">AndroidManifest.xml</span>      <span class="comment"># permissões, activities, serviço</span>
+        ├── <span class="folder">java/com/doma/wearos/presentation/</span>
+        │   ├── <span class="file">AudioHelper.kt</span>       <span class="comment"># audioOutputAvailable()</span>
+        │   ├── <span class="file">MainActivity.kt</span>      <span class="comment"># ListView, Buttons, Callback</span>
+        │   ├── <span class="file">AudioAssistActivity.kt</span><span class="comment"># TTS PT-BR</span>
+        │   ├── <span class="file">AlertActivity.kt</span>     <span class="comment"># alertas + vibração</span>
+        │   └── <span class="file">AudioAssistService.kt</span><span class="comment"># serviço background</span>
+        └── <span class="folder">res/</span>
+            ├── <span class="folder">layout/</span>
+            │   ├── <span class="file">activity_main.xml</span>
+            │   ├── <span class="file">activity_audio_assist.xml</span>
+            │   └── <span class="file">activity_alert.xml</span>
+            ├── <span class="folder">values/</span>
+            │   ├── <span class="file">strings.xml</span>
+            │   └── <span class="file">colors.xml</span>
+            └── <span class="folder">drawable/</span>
+                └── <span class="file">ic_launcher.xml</span>
+  </div>
+
+  <!-- 5. REFERÊNCIAS -->
+  <h2 class="section-title">5. Referências</h2>
+  <ol>
+    <li>Android Developers. <em>Audio output for Wear OS</em>. Disponível em: <code>https://developer.android.com/training/wearables/audio</code></li>
+    <li>Android Developers. <em>AudioManager</em>. Disponível em: <code>https://developer.android.com/reference/android/media/AudioManager</code></li>
+    <li>Android Developers. <em>TextToSpeech</em>. Disponível em: <code>https://developer.android.com/reference/android/speech/tts/TextToSpeech</code></li>
+    <li>Android Developers. <em>Create a Wear OS project</em>. Disponível em: <code>https://developer.android.com/training/wearables/get-started/creating</code></li>
+    <li>Material de orientação — DGT2816, Estácio. Disponível em: <code>https://sway.cloud.microsoft/d3rPssMprgwvvxGP</code></li>
+  </ol>
+
+  <div class="footer">
+    <p><strong>DomaWearOS</strong> — Trabalho Prático | DGT2816 — Interação com sensores de smartphones e wearables</p>
+    <p>Estácio | Kotlin + Wear OS SDK | 2026</p>
+  </div>
+
+</div>
+</body>
+</html>

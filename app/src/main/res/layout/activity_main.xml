@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#1A1A2E" android:padding="8dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:gravity="center_horizontal">
+        <TextView android:id="@+id/tv_titulo" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🏢 DOMA"
+            android:textColor="#E94560" android:textSize="18sp" android:textStyle="bold"
+            android:gravity="center" android:paddingTop="8dp" android:paddingBottom="2dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Assistência Wear OS" android:textColor="#A8A8B3"
+            android:textSize="10sp" android:gravity="center" android:paddingBottom="8dp"/>
+        <TextView android:id="@+id/tv_audio_status" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🔍 Detectando saídas de áudio..."
+            android:textColor="#FFFFFF" android:background="#16213E" android:textSize="10sp"
+            android:gravity="center" android:padding="8dp" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Funcionalidades:" android:textColor="#E94560"
+            android:textSize="11sp" android:textStyle="bold" android:paddingBottom="4dp"/>
+        <ListView android:id="@+id/lv_funcionalidades" android:layout_width="match_parent"
+            android:layout_height="140dp" android:background="#16213E"
+            android:layout_marginBottom="8dp"/>
+        <Button android:id="@+id/btn_audio_assist" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🔊 ÁUDIO ASSISTIVO"
+            android:backgroundTint="#E94560" android:textColor="#FFFFFF"
+            android:textSize="11sp" android:textStyle="bold"
+            android:layout_marginBottom="6dp" android:minHeight="36dp"/>
+        <Button android:id="@+id/btn_alertas" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🚨 ALERTAS DE SEGURANÇA"
+            android:backgroundTint="#FF6B35" android:textColor="#FFFFFF"
+            android:textSize="11sp" android:textStyle="bold"
+            android:layout_marginBottom="6dp" android:minHeight="36dp"/>
+        <Button android:id="@+id/btn_bluetooth" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🎧 CONECTAR BLUETOOTH"
+            android:backgroundTint="#0F3460" android:textColor="#FFFFFF"
+            android:textSize="11sp" android:textStyle="bold"
+            android:layout_marginBottom="8dp" android:minHeight="36dp"/>
+    </LinearLayout>
+</ScrollView>

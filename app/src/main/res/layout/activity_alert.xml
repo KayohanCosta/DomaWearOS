@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#1A1A2E" android:padding="8dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:gravity="center_horizontal">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="🚨 Alertas de Segurança" android:textColor="#FF6B35"
+            android:textSize="15sp" android:textStyle="bold" android:gravity="center"
+            android:paddingTop="8dp" android:paddingBottom="8dp"/>
+        <TextView android:id="@+id/tv_alert_status" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Nenhum alerta ativo"
+            android:textColor="#FFFFFF" android:background="#16213E"
+            android:textSize="11sp" android:gravity="center"
+            android:padding="8dp" android:layout_marginBottom="12dp"/>
+        <Button android:id="@+id/btn_evacuacao" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🚪 EVACUAÇÃO DE EMERGÊNCIA"
+            android:backgroundTint="#CC0000" android:textColor="#FFFFFF"
+            android:textSize="10sp" android:textStyle="bold"
+            android:layout_marginBottom="6dp" android:minHeight="40dp"/>
+        <Button android:id="@+id/btn_incendio" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🔥 ALERTA DE INCÊNDIO"
+            android:backgroundTint="#FF6B35" android:textColor="#FFFFFF"
+            android:textSize="10sp" android:textStyle="bold"
+            android:layout_marginBottom="6dp" android:minHeight="40dp"/>
+        <Button android:id="@+id/btn_medico" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🏥 EMERGÊNCIA MÉDICA"
+            android:backgroundTint="#007BFF" android:textColor="#FFFFFF"
+            android:textSize="10sp" android:textStyle="bold"
+            android:layout_marginBottom="6dp" android:minHeight="40dp"/>
+        <Button android:id="@+id/btn_seguranca" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="🛡️ AVISO DE SEGURANÇA"
+            android:backgroundTint="#0F3460" android:textColor="#FFFFFF"
+            android:textSize="10sp" android:textStyle="bold" android:minHeight="40dp"/>
+    </LinearLayout>
+</ScrollView>
